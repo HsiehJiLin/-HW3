@@ -52,3 +52,18 @@
 
 	and enter the following command to leave the server.
 		exit
+
+4. start lobby client
+	### Windows (PowerShell)
+		py client.py
+
+	### macOS/Linux
+		python3 client.py
+
+5. start Developer Client
+	### Windows (PowerShell)
+		py Developer_client.py
+
+	### macOS/Linux
+		python3 Developer_client.py
+
