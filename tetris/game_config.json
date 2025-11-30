@@ -1,0 +1,28 @@
+{
+  "name": "Tetris Battle",
+  "type": "GUI",
+  "maxPlayers": 2,
+  "server": {
+    "entry": "server/server.py",
+    "command": [
+      "{python}",
+      "server/server.py",
+      "{matchId}",
+      "{roomId}",
+      "{startAt}",
+      "{user0}",
+      "{user1}"
+    ]
+  },
+  "client": {
+    "entry": "client/client.py",
+    "command": [
+      "{python}",
+      "client/client.py",
+      "{host}",
+      "{port}",
+      "{userId}",
+      "{linuxuser}"
+    ]
+  }
+}
