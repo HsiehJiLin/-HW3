@@ -122,9 +122,10 @@ class Client:
 
     def _main_menu(self):
         print("\n=== Main Menu ===")
-        print("1. Lobby")
-        print("2. Game Store")
-        print("3. Logout")
+        print("1. Lobby (room & list)")
+        print("2. Lobby (invite & game)")
+        print("3. Game Store")
+        print("4. Logout")
         print("=================\n")
         
         command = input("Select option: ").strip()
@@ -137,10 +138,12 @@ class Client:
             return
         
         if command == "1":
-            self._lobby_menu()
+            self._lobby_menu1()
         elif command == "2":
-            self._game_store_menu()
+            self._lobby_menu2()
         elif command == "3":
+            self._game_store_menu()
+        elif command == "4":
             _send("logout " + self.User["name"], self.client_socket)
             data = self.q.get()
             print(data)
@@ -157,20 +160,16 @@ class Client:
         else:
             print("Invalid command\n")
 
-    def _lobby_menu(self):
+    def _lobby_menu1(self):
         while(True):
-            print("\n=== Lobby Menu ===")
+            print("\n=== Lobby Menu 1 (Room & List) ===")
             print("1. createroom")
             print("2. joinroom")
             print("3. onlinelist")
             print("4. roomlist")
-            print("5. invite")
-            print("6. invitation")
-            print("7. gamestart")
-            print("8. leaveroom")
-            print("9. gamelog")
-            print("10. Back")
-            print("=====================\n")
+            print("5. leaveroom")
+            print("6. Back")
+            print("===========================\n")
             command = input("Select option: ").strip()
             if not command:
                 print("Invalid input\n")
@@ -256,6 +255,40 @@ class Client:
                 if(self.if_in_room == 0):
                     print("You are not in a room\n")
                     continue
+                room_id = self.Room["id"]
+                user_id = self.User["id"]
+                _send(f"leaveroom {room_id} {user_id}", self.client_socket)
+                data = self.q.get()
+                print(data)
+                self.if_in_room = 0
+                self.Room.clear()
+            elif command == "6":
+                break
+            else:
+                print("Invalid command\n")
+
+    def _lobby_menu2(self):
+        while True:
+            print("\n=== Lobby Menu 2 (Invite & Game) ===")
+            print("1. invite")
+            print("2. invitation")
+            print("3. gamestart")
+            print("4. gamelog")
+            print("5. Back")
+            print("====================================\n")
+
+            command = input("Select option: ").strip()
+            if not command:
+                print("Invalid input\n")
+                continue
+            if " " in command:
+                print("Invalid command\n")
+                continue
+
+            if(command == "1"):
+                if(self.if_in_room == 0):
+                    print("You are not in a room\n")
+                    continue
                 playerid = input("Enter player ID to invite: ").strip()
                 if not playerid:
                     print("Player ID cannot be empty\n")
@@ -271,12 +304,12 @@ class Client:
                 _send(f"invite {playerid} {room_id}", self.client_socket)
                 data = self.q.get()
                 print(data)
-            elif(command == "6"):
+            elif(command == "2"):
                 user_id = self.User["id"]
                 _send(f"invitation {user_id}", self.client_socket)
                 data = self.q.get()
                 print(data)
-            elif(command == "7"):
+            elif(command == "3"):
                 if(self.if_in_room == 0):
                     print("You are not in a room\n")
                     continue
@@ -284,25 +317,14 @@ class Client:
                 _send(f"gamestart {room_id}", self.client_socket)
                 data = self.q.get()
                 print(data)
-            elif(command == "8"):
-                if(self.if_in_room == 0):
-                    print("You are not in a room\n")
-                    continue
-                room_id = self.Room["id"]
-                user_id = self.User["id"]
-                _send(f"leaveroom {room_id} {user_id}", self.client_socket)
-                data = self.q.get()
-                print(data)
-                self.if_in_room = 0
-                self.Room.clear()
-            elif(command == "9"):
+            elif(command == "4"):
                 user_id = self.User["id"]
                 _send(f"showgamelog {user_id}", self.client_socket)
                 data = self.q.get()
                 print(data)
                 data = self.q.get()
                 print(data)
-            elif command == "10":
+            elif command == "5":
                 break
             else:
                 print("Invalid command\n")
@@ -582,7 +604,7 @@ class Client:
 
         if local is None: # not installed
             print(f"[GAMEPREPARE] You haven't installed game {game_id}.")
-            print("Please go to Game Store (option 13) to download it first.\n")
+            print("Please go to Game Store (option 3) to download it first.\n")
             _send(
                 f"gameprepare_result {room_id} {self.User['id']} NOTREADY not_installed",
                 self.client_socket
