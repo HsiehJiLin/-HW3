@@ -14,9 +14,9 @@ class AccountDatabase:
     def __init__ (self):
         self.DB_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.DB_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #allow repeated binding
-        self.DB_socket.bind(("0.0.0.0", 12345))
+        self.DB_socket.bind(("0.0.0.0", 12346))
         self.DB_socket.listen()
-        print("DB is on 0.0.0.0:12345")
+        print("DB is on 0.0.0.0:12346")
 
         self.User = {"nextID" : 1}
         self.Room = {"nextID" : 1}

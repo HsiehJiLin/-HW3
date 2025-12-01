@@ -132,16 +132,16 @@ def main():
     port = int(sys.argv[2])
     user_id = int(sys.argv[3])
     linuxuser = sys.argv[4]  # 只是為了符合 config，程式裡不會用到
-    subprocess.Popen([
+    '''subprocess.Popen([
         "ssh", "-N",
         "-L", f"{port}:{host}:{port}",
         f"{linuxuser}@linux1.cs.nycu.edu.tw"
     ])
-    time.sleep(5)
+    time.sleep(5)'''
 
     # 連到遊戲 server
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect(("127.0.0.1", port))
+    sock.connect(("linux1.cs.nycu.edu.tw", port))
 
     # 先送 join
     send_json(sock, {

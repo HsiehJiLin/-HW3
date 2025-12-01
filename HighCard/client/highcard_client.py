@@ -33,15 +33,15 @@ def main():
     userId    = int(sys.argv[3])
     linuxuser = sys.argv[4]   # 只是接收，不需要使用
 
-    subprocess.Popen([
+    '''subprocess.Popen([
         "ssh", "-N",
         "-L", f"{port}:{host}:{port}",
         f"{linuxuser}@linux1.cs.nycu.edu.tw"
     ])
-    time.sleep(5)
+    time.sleep(5)'''
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect(("127.0.0.1", port))
+    sock.connect(("linux1.cs.nycu.edu.tw", port))
 
     # --- 下面邏輯跟之前一樣，不重複 ---
     msg = _recv_json(sock)

@@ -2,7 +2,7 @@ import socket, struct, json, threading, queue, subprocess, time, os
 from collections import deque
 import shutil
 
-SERVER_HOST = "127.0.0.1"
+SERVER_HOST = "linux1.cs.nycu.edu.tw"
 SERVER_PORT = 24680
 CONFIG_USER_FILE = "config_linuxuser.json"
 
@@ -418,7 +418,7 @@ def _recv_json(socket):
 
 
 if (__name__ == "__main__"):
-    try:
+    '''try:
         with open(CONFIG_USER_FILE, "r", encoding="utf-8") as f:
             cfg = json.load(f)
             linuxuser = cfg["linuxuser"]
@@ -433,7 +433,7 @@ if (__name__ == "__main__"):
         raise SystemExit(1)
     except KeyError:
         print("Error: 'linuxuser' field missing in config_linuxuser.json.")
-        raise SystemExit(1)
+        raise SystemExit(1)'''
     
     client = Client()
     client.serve_forever()

@@ -12,7 +12,7 @@ class DeveloperServer:
         #DB
         self.DB_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.DB_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.DB_socket.connect(("127.0.0.1", 12345))
+        self.DB_socket.connect(("127.0.0.1", 12346))
         #lock
         self.lock = threading.Lock()
 

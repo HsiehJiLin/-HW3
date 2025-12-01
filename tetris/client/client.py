@@ -91,14 +91,14 @@ class Client:
         self.game_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         #build SSH tunnel
-        linuxuser = data["linuxuser"]
+        '''linuxuser = data["linuxuser"]
         subprocess.Popen([
             "ssh", "-N",
             "-L", f"{data['port']}:{data['host']}:{data['port']}",
             f"{linuxuser}@linux1.cs.nycu.edu.tw"
         ])
-        time.sleep(5)
-        self.game_socket.connect(("127.0.0.1", data["port"]))
+        time.sleep(5)'''
+        self.game_socket.connect(("linux1.cs.nycu.edu.tw", data["port"]))
         self.game_q = queue.Queue()
         game_t = threading.Thread(target = self._recv_game_server_forever, daemon = True)
         game_t.start()
