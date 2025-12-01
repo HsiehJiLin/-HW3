@@ -16,8 +16,7 @@
       "client/client.py",
       "{host}",
       "{port}",
-      "{userId}",
-      "{linuxuser}"
+      "{userId}"
     ]
   }
 }

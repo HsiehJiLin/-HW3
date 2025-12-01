@@ -5,18 +5,17 @@ import os
 
 def main():
     if len(sys.argv) < 5:
-        print("Usage: run_client.py <host> <port> <userId> <linuxuser>")
+        print("Usage: run_client.py <host> <port> <userId>")
         return
 
     host      = sys.argv[1]
     port      = sys.argv[2]
     userId    = sys.argv[3]
-    linuxuser = sys.argv[4]
 
     py = sys.executable
     game_dir = os.path.dirname(os.path.abspath(__file__))
 
-    base_cmd = [py, "highcard_client.py", host, port, userId, linuxuser]
+    base_cmd = [py, "highcard_client.py", host, port, userId]
 
     plat = sys.platform
     cmd = None
@@ -40,11 +39,11 @@ def main():
     # Windows
     elif plat == "win32":
         cmd = ["cmd", "/c", "start", "", py, "highcard_client.py",
-               host, port, userId, linuxuser]
+               host, port, userId]
 
     # macOS
     elif plat == "darwin":
-        inner = f'{py} highcard_client.py {host} {port} {userId} {linuxuser}'
+        inner = f'{py} highcard_client.py {host} {port} {userId}'
         cmd = ["osascript", "-e",
                f'tell app "Terminal" to do script "{inner}"']
 

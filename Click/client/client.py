@@ -125,19 +125,12 @@ def run_game():
 
 def main():
     if len(sys.argv) < 5:
-        print("Usage: client.py host port userId linuxuser")
+        print("Usage: client.py host port userId")
         sys.exit(1)
 
     host = sys.argv[1]
     port = int(sys.argv[2])
     user_id = int(sys.argv[3])
-    linuxuser = sys.argv[4]  # 只是為了符合 config，程式裡不會用到
-    '''subprocess.Popen([
-        "ssh", "-N",
-        "-L", f"{port}:{host}:{port}",
-        f"{linuxuser}@linux1.cs.nycu.edu.tw"
-    ])
-    time.sleep(5)'''
 
     # 連到遊戲 server
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

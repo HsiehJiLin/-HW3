@@ -25,20 +25,12 @@ def _recv_json(sock):
 
 def main():
     if len(sys.argv) < 5:
-        print("Usage: highcard_client.py <host> <port> <userId> <linuxuser>")
+        print("Usage: highcard_client.py <host> <port> <userId>")
         return
 
     host      = sys.argv[1]
     port      = int(sys.argv[2])
     userId    = int(sys.argv[3])
-    linuxuser = sys.argv[4]   # 只是接收，不需要使用
-
-    '''subprocess.Popen([
-        "ssh", "-N",
-        "-L", f"{port}:{host}:{port}",
-        f"{linuxuser}@linux1.cs.nycu.edu.tw"
-    ])
-    time.sleep(5)'''
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect(("linux1.cs.nycu.edu.tw", port))

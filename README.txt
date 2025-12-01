@@ -6,6 +6,7 @@
 
 
 2. start lobby client
+
 	### Windows (PowerShell)
 		py client.py
 
@@ -13,6 +14,7 @@
 		python3 client.py
 
 3. start Developer Client
+
 	### Windows (PowerShell)
 		py Developer_client.py
 
