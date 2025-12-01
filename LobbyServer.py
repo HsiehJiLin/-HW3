@@ -730,7 +730,8 @@ class LobbyServer:
                             "collection": "Game",
                             "action": "query",
                             "data": {
-                                "id": game_id
+                                "id": game_id,
+                                "status": "listed"
                             }
                         }, DB_socket)
                         data = _recv_json(self.DB_socket)
