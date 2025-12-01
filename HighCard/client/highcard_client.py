@@ -24,7 +24,7 @@ def _recv_json(sock):
     return json.loads(_recv_json_len(sock, length).decode())
 
 def main():
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 4:
         print("Usage: highcard_client.py <host> <port> <userId>")
         return
 

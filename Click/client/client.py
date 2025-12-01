@@ -124,7 +124,7 @@ def run_game():
     return score, lines, max_combo
 
 def main():
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 4:
         print("Usage: client.py host port userId")
         sys.exit(1)
 

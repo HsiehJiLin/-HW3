@@ -4,7 +4,7 @@ import shutil
 import os
 
 def main():
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 4:
         print("Usage: run_client.py <host> <port> <userId>")
         return
 
